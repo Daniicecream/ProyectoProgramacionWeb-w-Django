@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic import TemplateView
-
+from rest_framework.authtoken.views import obtain_auth_token  
 
 urlpatterns = [
     
@@ -38,4 +38,7 @@ urlpatterns = [
     # Login and Logout 
     path('login/', LoginView.as_view(redirect_authenticated_user=True,template_name='Usuario/login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='Usuario/logout.html'), name='logout'),
+
+    # Para pedir token con usuario y password
+    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),  
 ]
